@@ -7,7 +7,7 @@ Your goal is to work out the challenges listed below.
 ## Learning Objectives 
 
 - Implement callbacks to handle asynchromnous actions 
-- Use functions to create callbacks
+- Use functions to create callbacks 
 - Design functions and Objects that implement callbacks
 - Use Promise to handle asynchronous actions
 - Use aysnc and await to handle Promises
