@@ -42,6 +42,7 @@
         e.preventDefault()
         const zip = zipInput.value
         getWeather('467355df4c808dd6134a3b64e9ace282', zip, (json) => {
+          console.log(json)
           tempEl.innerHTML = json.main.temp
           descEl.innerHTML = json.weather[0].description
         }, (error) => { console.log(error)})
