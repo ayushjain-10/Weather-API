@@ -1,62 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Ms Merriweather</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1 id="temp">
-        <!--Temp -->
-      </h1>
-      <p id="desc">
-        <!-- description -->
-      </p>
-      <form id="form">
-        <input 
-          id="zip" 
-          type="number" 
-          placeholder="zip code"
-          title="Please Enter a valid Zip Code"
-          pattern="^\d{5}(?:[-\s]\d{4})?$"
-        >
-        <button type="submit">Search</button>
-      </form>
-    </div>
 
-    <script src="get-weather.js" type="module"></script>
-    <script type="module">
-      import getWeather from './get-weather.js';
+<head>
+  <title>Ms Merriweather</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-      // ------------------------------------------------------
-      // Developer Code
+<body>
+  <div class="container">
+    <h1 id="name">
+      <!--Name-->
+    </h1>
+    <p id="code">
+      <!--Code-->
+    </p>
+    <h1 id="temp">
+      <!--Temp-->
+    </h1>
+    <p id="feels_like">
+      <!--Feels Like-->
+    </p>
+    <p id="temp_max">
+      <!--Temp max-->
+    </p>
+    <p id="temp_min">
+      <!--Temp min -->
+    </p>
+    <p id="desc">
+      <!--Description-->
+    </p>
+    <form id="form">
+      <input id="zip" type="number" placeholder="zip code" title="Please Enter a valid Zip Code"
+        pattern="^\d{5}(?:[-\s]\d{4})?$">
+      <button type="submit">Search</button>
+    </form>
+  </div>
 
-      // Get Element refererences
-      const tempEl = document.getElementById('temp')
-      const descEl = document.getElementById('desc')
-      const formEl = document.getElementById('form')
-      const zipInput = document.getElementById('zip')
+  <script src="get-weather.js" type="module"></script>
+  <script type="module">
+    import getWeather from './get-weather.js';
 
-      // Define event listeners
-      formEl.addEventListener('submit', (e) => {
-        e.preventDefault()
-        const zip = zipInput.value
-        getWeather('467355df4c808dd6134a3b64e9ace282', zip, (json) => {
-          console.log(json)
-          tempEl.innerHTML = json.main.temp
-          descEl.innerHTML = json.weather[0].description
-        }, (error) => { console.log(error)})
+    // ------------------------------------------------------
+    // Developer Code
+
+    // Get Element refererences
+    const nameEl = document.getElementById('name')
+    const tempEl = document.getElementById('temp')
+    const tempMaxEl = document.getElementById('temp_max')
+    const tempMinEl = document.getElementById('temp_min')
+    const descEl = document.getElementById('desc')
+    const codeEl = document.getElementById('code')
+    const feelEl = document.getElementById('feels_like')
+    const formEl = document.getElementById('form')
+    const zipInput = document.getElementById('zip')
+
+    // Define event listeners
+    formEl.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const zip = zipInput.value
+      getWeather('894816c699b8220e363e90a4d4fc5b77', zip, (data) => {
+        console.log(data)
+        tempEl.innerHTML = data.temp
+        descEl.innerHTML = data.description.charAt(0).toUpperCase() + data.description.slice(1);
+        nameEl.innerHTML = data.name
+        feelEl.innerHTML = 'Feels like:' + ' ' + data.feels_like
+        codeEl.innerHTML = 'Code:' + ' ' + data.code
+        tempMaxEl.innerHTML = 'Max temp:' + ' ' + data.temp_max
+        tempMinEl.innerHTML = 'Min temp:' + ' ' + data.temp_min
+      }, (error) => { console.log(error) })
 
       // OR
-        // const displayWeather = (json) => {
-        //   tempEl.innerHTML = json.main.temp
-        //   descEl.innerHTML = json.weather[0].description
-        // }
-        // const displayError = (err) => {
-        //   console.log(err)
-        // }
-        // getWeather('467355df4c808dd6134a3b64e9ace282', '94539', displayWeather, displayError)
-      })   
-    </script>
-  </body>
+      // const displayWeather = (json) => {
+      //   tempEl.innerHTML = json.main.temp
+      //   descEl.innerHTML = json.weather[0].description
+      // }
+      // const displayError = (err) => {
+      //   console.log(err)
+      // }
+      // getWeather('467355df4c808dd6134a3b64e9ace282', '94539', displayWeather, displayError)
+    })   
+  </script>
+</body>
+
 </html>
