@@ -58,15 +58,15 @@
     formEl.addEventListener('submit', (e) => {
       e.preventDefault()
       const zip = zipInput.value
-      getWeather('894816c699b8220e363e90a4d4fc5b77', zip, (data) => {
-        console.log(data)
-        tempEl.innerHTML = data.temp
-        descEl.innerHTML = data.description.charAt(0).toUpperCase() + data.description.slice(1);
-        nameEl.innerHTML = data.name
-        feelEl.innerHTML = 'Feels like:' + ' ' + data.feels_like
-        codeEl.innerHTML = 'Code:' + ' ' + data.code
-        tempMaxEl.innerHTML = 'Max temp:' + ' ' + data.temp_max
-        tempMinEl.innerHTML = 'Min temp:' + ' ' + data.temp_min
+      getWeather('894816c699b8220e363e90a4d4fc5b77', zip, (json) => {
+        console.log(json)
+        tempEl.innerHTML = json.temp
+        descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
+        nameEl.innerHTML = json.name
+        feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
+        codeEl.innerHTML = 'Code:' + ' ' + json.code
+        tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
+        tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
       }, (error) => { console.log(error) })
 
       // OR
