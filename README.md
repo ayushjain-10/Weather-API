@@ -1,4 +1,4 @@
-# weather-api
+# Weather-Api
  
 This repo contains some starter code that works with the [Open Weather Map API](https://openweathermap.org). 
 
