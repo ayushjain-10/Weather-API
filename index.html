@@ -99,15 +99,21 @@
     const speed = document.getElementById('speed')
 
 
+
     import Weather from './get-weather.js';
     const weather = new Weather('de63e8dbe4e49c4dab0065710e8f509b', 'imperial');
-
+    let  weatherTimer = null;
+    function removeWeatherTimer(){
+      clearInterval(weatherTimer);
+    }
 
     formEl.addEventListener('submit', (e) => {
       e.preventDefault()
       weather.zip = zipInput.value
       // Run getWeatherByZip every 5 seconds
-      setInterval(() => {
+      
+      weatherTimer = setInterval(() => {
+        removeWeatherTimer();
         weather.getWeatherByZip(weather.zip)
           .then((json) => {
             console.log(json)
@@ -126,14 +132,15 @@
           }, (error) => { console.log(error) })
       }, 1000)
 
+
     })
 
     form2El.addEventListener('submit', (e) => {
       e.preventDefault()
 
       weather.city = cityInput.value
-
-      setInterval(() => {
+      weatherTimer = setInterval(() => {
+        removeWeatherTimer();
         weather.getWeatherByCity(weather.city)
           .then((json) => {
             console.log(json)
@@ -158,7 +165,8 @@
       e.preventDefault()
       weather.lat = latit.value
       weather.lon = long.value
-      setInterval(() => {
+      weatherTimer = setInterval(() => {
+        removeWeatherTimer();
         weather.getWeatherByGeo(weather.lat, weather.lon)
           .then((json) => {
             console.log(json)
@@ -181,7 +189,8 @@
     form4El.addEventListener('submit', (e) => {
       e.preventDefault()
       weather.cityID = CityID.value
-      setInterval(() => {
+      weatherTimer = setInterval(() => {
+        removeWeatherTimer();
         weather.getWeatherByCityId(weather.cityID)
           .then((json) => {
             console.log(json)
