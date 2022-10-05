@@ -58,8 +58,7 @@
 
   <script src="get-weather.js" type="module"></script>
   <script type="module">
-    import  Weather from './get-weather.js';
-
+    import { getWeatherByZip, getWeatherByCity, getWeatherByGeo } from './get-weather.js';
     // ------------------------------------------------------
     // Developer Code
 
@@ -85,7 +84,7 @@
     formEl.addEventListener('submit', (e) => {
       e.preventDefault()
       const zip = zipInput.value
-      Weather.getWeatherByZip('894816c699b8220e363e90a4d4fc5b77', zip)
+      getWeatherByZip('894816c699b8220e363e90a4d4fc5b77', zip)
         .then((json) => {
           console.log(json)
           tempEl.innerHTML = json.temp
@@ -106,7 +105,7 @@
 
       const city = cityInput.value
 
-      Weather.getWeatherByCity('894816c699b8220e363e90a4d4fc5b77', city)
+      getWeatherByCity('894816c699b8220e363e90a4d4fc5b77', city)
         .then((json) => {
           console.log(json)
           tempEl.innerHTML = json.temp
@@ -126,7 +125,7 @@
       e.preventDefault()
       const lat = latit.value
       const lon = long.value
-      Weather.getWeatherByGeo('de63e8dbe4e49c4dab0065710e8f509b', lat, lon)
+      getWeatherByGeo('de63e8dbe4e49c4dab0065710e8f509b', lat, lon)
         .then((json) => {
           console.log(json)
           tempEl.innerHTML = json.temp
