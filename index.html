@@ -18,6 +18,15 @@
     <h1 id="temp">
       <!--Temp-->
     </h1>
+    <p id="ID">
+      <!--ID-->
+    </p>
+    <p id="DEG">
+      <!--Wind Degree-->
+    </p>
+    <p id="SPEED">
+      <!--Wind Speed-->
+    </p>
     <p id="feels_like">
       <!--Feels Like-->
     </p>
@@ -82,6 +91,13 @@
     const CityID = document.getElementById('cityID')
     const coordLat = document.getElementById('coordLat')
     const coordLon = document.getElementById('coordLon')
+    const ID = document.getElementById('ID')
+    const DEG = document.getElementById('DEG')
+    const SPEED = document.getElementById('SPEED')
+    const id = document.getElementById('id')
+    const deg = document.getElementById('deg')
+    const speed = document.getElementById('speed')
+
 
     import Weather from './get-weather.js';
     const weather = new Weather('de63e8dbe4e49c4dab0065710e8f509b', 'imperial');
@@ -98,6 +114,9 @@
             tempEl.innerHTML = json.temp
             descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
             nameEl.innerHTML = json.name
+            ID.innerHTML = 'City Id:' + ' ' + json.id
+            DEG.innerHTML = 'Wind Direction:' + ' ' + json.deg
+            SPEED.innerHTML = 'Wind Speed:' + ' ' + json.speed
             coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
             coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
             feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
@@ -121,6 +140,9 @@
             tempEl.innerHTML = json.temp
             descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
             nameEl.innerHTML = json.name
+            ID.innerHTML = 'City Id:' + ' ' + json.id
+            DEG.innerHTML = 'Wind Direction:' + ' ' + json.deg
+            SPEED.innerHTML = 'Wind Speed:' + ' ' + json.speed
             coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
             coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
             feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
@@ -143,6 +165,9 @@
             tempEl.innerHTML = json.temp
             descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
             nameEl.innerHTML = json.name
+            ID.innerHTML = 'City Id:' + ' ' + json.id
+            DEG.innerHTML = 'Wind Direction:' + ' ' + json.deg
+            SPEED.innerHTML = 'Wind Speed:' + ' ' + json.speed
             coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
             coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
             feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
@@ -163,6 +188,9 @@
             tempEl.innerHTML = json.temp
             descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
             nameEl.innerHTML = json.name
+            ID.innerHTML = 'City Id:' + ' ' + json.id
+            DEG.innerHTML = 'Wind Direction:' + ' ' + json.deg
+            SPEED.innerHTML = 'Wind Speed:' + ' ' + json.speed
             coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
             coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
             feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
