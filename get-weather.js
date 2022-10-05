@@ -1,25 +1,30 @@
-// Functions
-function getWeatherByZip(apikey, zip, units = 'imperial') {
-    const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${units}`
-    return getWeather(path)
-}
+class Weather {
+    constructor(apikey, units) {
+        this.apikey = apikey
+        this.units = units
+    }
+    // Functions
+    async getWeatherByZip(zip) {
+        const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${this.apikey}&units=${this.units}`
+        return await this.getWeather(path)
+    }
 
-function getWeatherByCity(apikey, city, units = 'imperial') {
-    const path = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=${units}`
-    return getWeather(path)
-}
+    async getWeatherByCity(city) {
+        const path = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.apikey}&units=${this.units}`
+        return await this.getWeather(path)
+    }
 
-function getWeatherByGeo(apikey, lat, lon, units = 'imperial') {
-    const path = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}&units=${units}`
-    return getWeather(path)
-}
+    async getWeatherByGeo(lat, lon) {
+        const path = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.apikey}&units=${this.units}`
+        return await this.getWeather(path)
+    }
 
-function getWeatherByCityId(apikey, city_id,  units = 'imperial') {
-    const path = `https://api.openweathermap.org/data/2.5/weather?id=${city_id}&appid=${apikey}&units=${units}`
-    return getWeather(path)
-}
+    async getWeatherByCityId(city_id) {
+        const path = `https://api.openweathermap.org/data/2.5/weather?id=${city_id}&appid=${this.apikey}&units=${this.units}`
+        return await this.getWeather(path)
+    }
 
-async function getWeather(path) {
+    async getWeather(path) {
         // try something here
         const res = await fetch(path)
         const json = await res.json()
@@ -36,10 +41,7 @@ async function getWeather(path) {
         }
         return weatherData
     }
-    // Export functions
-    export {
-        getWeatherByZip,
-        getWeatherByCity,
-        getWeatherByGeo,
-        getWeatherByCityId
-    }
+}
+
+export default Weather
+
