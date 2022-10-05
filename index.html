@@ -54,11 +54,16 @@
       <input id="lon" type="number" step="any" placeholder="Longitude" title="Please Enter a longtitude">
       <button type="submit">Search</button>
     </form>
+    <form id="form4">
+      <h1>City ID:</h1>
+      <input id="cityID" type="number" placeholder="CityID" title="Please Enter a CityID">
+      <button type="submit">Search</button>
+    </form>
   </div>
 
   <script src="get-weather.js" type="module"></script>
   <script type="module">
-    import { getWeatherByZip, getWeatherByCity, getWeatherByGeo } from './get-weather.js';
+    import { getWeatherByZip, getWeatherByCity, getWeatherByGeo, getWeatherByCityId } from './get-weather.js';
     // ------------------------------------------------------
     // Developer Code
 
@@ -73,10 +78,12 @@
     const formEl = document.getElementById('form')
     const form2El = document.getElementById('form2')
     const form3El = document.getElementById('form3')
+    const form4El = document.getElementById('form4')
     const zipInput = document.getElementById('zip')
     const cityInput = document.getElementById('city')
     const latit = document.getElementById('lat')
     const long = document.getElementById('lon')
+    const CityID = document.getElementById('cityID')
     const coordLat = document.getElementById('coordLat')
     const coordLon = document.getElementById('coordLon')
 
@@ -126,6 +133,24 @@
       const lat = latit.value
       const lon = long.value
       getWeatherByGeo('de63e8dbe4e49c4dab0065710e8f509b', lat, lon)
+        .then((json) => {
+          console.log(json)
+          tempEl.innerHTML = json.temp
+          descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
+          nameEl.innerHTML = json.name
+          coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
+          coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
+          feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
+          codeEl.innerHTML = 'Code:' + ' ' + json.code
+          tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
+          tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
+        }, (error) => { console.log(error) })
+    })
+
+    form4El.addEventListener('submit', (e) => {
+      e.preventDefault()
+      const cityID = CityID.value
+      getWeatherByCityId('de63e8dbe4e49c4dab0065710e8f509b', cityID)
         .then((json) => {
           console.log(json)
           tempEl.innerHTML = json.temp

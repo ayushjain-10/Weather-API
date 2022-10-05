@@ -32,11 +32,11 @@
         align-items: top;
     } */
 
-      #form, #form2, #form3 {
+      #form, #form2, #form3, #form4 {
         display: flex;
       }
 
-      #form > input, #form2 > input, #form3 > input {
+      #form > input, #form2 > input, #form3 > input, #form4 > input {
         flex: 1;
         padding: 1em;
         font-size: 1em;
@@ -46,7 +46,7 @@
         border-right: none;
       }
 
-      #form > button, #form2 > button, #form3 > button {
+      #form > button, #form2 > button, #form3 > button, #form4 > button {
         padding: 0 1em;
         background-color: rgb(106, 177, 238);
         color: #fff;
