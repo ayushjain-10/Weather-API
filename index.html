@@ -102,33 +102,36 @@
 
     import Weather from './get-weather.js';
     const weather = new Weather('de63e8dbe4e49c4dab0065710e8f509b', 'imperial');
-    let  weatherTimer = null;
-    function removeWeatherTimer(){
+    let weatherTimer = null;
+    function removeWeatherTimer() {
       clearInterval(weatherTimer);
+    }
+    function helper(json) {
+      console.log(json)
+      tempEl.innerHTML = json.temp
+      descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
+      nameEl.innerHTML = json.name
+      ID.innerHTML = 'City Id:' + ' ' + json.id
+      DEG.innerHTML = 'Wind Direction:' + ' ' + json.deg
+      SPEED.innerHTML = 'Wind Speed:' + ' ' + json.speed
+      coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
+      coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
+      feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
+      codeEl.innerHTML = 'Code:' + ' ' + json.code
+      tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
+      tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
     }
 
     formEl.addEventListener('submit', (e) => {
       e.preventDefault()
       weather.zip = zipInput.value
       // Run getWeatherByZip every 5 seconds
-      
+      removeWeatherTimer();
       weatherTimer = setInterval(() => {
-        removeWeatherTimer();
         weather.getWeatherByZip(weather.zip)
           .then((json) => {
-            console.log(json)
-            tempEl.innerHTML = json.temp
-            descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
-            nameEl.innerHTML = json.name
-            ID.innerHTML = 'City Id:' + ' ' + json.id
-            DEG.innerHTML = 'Wind Direction:' + ' ' + json.deg
-            SPEED.innerHTML = 'Wind Speed:' + ' ' + json.speed
-            coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
-            coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
-            feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
-            codeEl.innerHTML = 'Code:' + ' ' + json.code
-            tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
-            tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
+            
+            helper(json)
           }, (error) => { console.log(error) })
       }, 1000)
 
@@ -139,23 +142,12 @@
       e.preventDefault()
 
       weather.city = cityInput.value
+      removeWeatherTimer();
       weatherTimer = setInterval(() => {
-        removeWeatherTimer();
         weather.getWeatherByCity(weather.city)
           .then((json) => {
             console.log(json)
-            tempEl.innerHTML = json.temp
-            descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
-            nameEl.innerHTML = json.name
-            ID.innerHTML = 'City Id:' + ' ' + json.id
-            DEG.innerHTML = 'Wind Direction:' + ' ' + json.deg
-            SPEED.innerHTML = 'Wind Speed:' + ' ' + json.speed
-            coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
-            coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
-            feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
-            codeEl.innerHTML = 'Code:' + ' ' + json.code
-            tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
-            tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
+            helper(json);
           }, (error) => { console.log(error) })
       }, 1000)
 
@@ -165,23 +157,12 @@
       e.preventDefault()
       weather.lat = latit.value
       weather.lon = long.value
+      removeWeatherTimer();
       weatherTimer = setInterval(() => {
-        removeWeatherTimer();
         weather.getWeatherByGeo(weather.lat, weather.lon)
           .then((json) => {
             console.log(json)
-            tempEl.innerHTML = json.temp
-            descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
-            nameEl.innerHTML = json.name
-            ID.innerHTML = 'City Id:' + ' ' + json.id
-            DEG.innerHTML = 'Wind Direction:' + ' ' + json.deg
-            SPEED.innerHTML = 'Wind Speed:' + ' ' + json.speed
-            coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
-            coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
-            feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
-            codeEl.innerHTML = 'Code:' + ' ' + json.code
-            tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
-            tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
+            helper(json);
           }, (error) => { console.log(error) })
       }, 1000)
     })
@@ -189,23 +170,12 @@
     form4El.addEventListener('submit', (e) => {
       e.preventDefault()
       weather.cityID = CityID.value
+      
       weatherTimer = setInterval(() => {
-        removeWeatherTimer();
         weather.getWeatherByCityId(weather.cityID)
           .then((json) => {
             console.log(json)
-            tempEl.innerHTML = json.temp
-            descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
-            nameEl.innerHTML = json.name
-            ID.innerHTML = 'City Id:' + ' ' + json.id
-            DEG.innerHTML = 'Wind Direction:' + ' ' + json.deg
-            SPEED.innerHTML = 'Wind Speed:' + ' ' + json.speed
-            coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
-            coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
-            feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
-            codeEl.innerHTML = 'Code:' + ' ' + json.code
-            tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
-            tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
+            helper(json);
           }, (error) => { console.log(error) })
       }, 1000)
     })
