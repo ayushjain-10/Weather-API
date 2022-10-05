@@ -105,10 +105,10 @@
 
     formEl.addEventListener('submit', (e) => {
       e.preventDefault()
-      const zip = zipInput.value
+      weather.zip = zipInput.value
       // Run getWeatherByZip every 5 seconds
       setInterval(() => {
-        weather.getWeatherByZip(zip)
+        weather.getWeatherByZip(weather.zip)
           .then((json) => {
             console.log(json)
             tempEl.innerHTML = json.temp
@@ -131,10 +131,10 @@
     form2El.addEventListener('submit', (e) => {
       e.preventDefault()
 
-      const city = cityInput.value
+      weather.city = cityInput.value
 
       setInterval(() => {
-        weather.getWeatherByCity(city)
+        weather.getWeatherByCity(weather.city)
           .then((json) => {
             console.log(json)
             tempEl.innerHTML = json.temp
@@ -156,10 +156,10 @@
 
     form3El.addEventListener('submit', (e) => {
       e.preventDefault()
-      const lat = latit.value
-      const lon = long.value
+      weather.lat = latit.value
+      weather.lon = long.value
       setInterval(() => {
-        weather.getWeatherByGeo(lat, lon)
+        weather.getWeatherByGeo(weather.lat, weather.lon)
           .then((json) => {
             console.log(json)
             tempEl.innerHTML = json.temp
@@ -180,9 +180,9 @@
 
     form4El.addEventListener('submit', (e) => {
       e.preventDefault()
-      const cityID = CityID.value
+      weather.cityID = CityID.value
       setInterval(() => {
-        weather.getWeatherByCityId(cityID)
+        weather.getWeatherByCityId(weather.cityID)
           .then((json) => {
             console.log(json)
             tempEl.innerHTML = json.temp
