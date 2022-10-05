@@ -90,19 +90,22 @@
     formEl.addEventListener('submit', (e) => {
       e.preventDefault()
       const zip = zipInput.value
-      weather.getWeatherByZip(zip)
-        .then((json) => {
-          console.log(json)
-          tempEl.innerHTML = json.temp
-          descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
-          nameEl.innerHTML = json.name
-          coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
-          coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
-          feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
-          codeEl.innerHTML = 'Code:' + ' ' + json.code
-          tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
-          tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
-        }, (error) => { console.log(error) })
+      // Run getWeatherByZip every 5 seconds
+      setInterval(() => {
+        weather.getWeatherByZip(zip)
+          .then((json) => {
+            console.log(json)
+            tempEl.innerHTML = json.temp
+            descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
+            nameEl.innerHTML = json.name
+            coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
+            coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
+            feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
+            codeEl.innerHTML = 'Code:' + ' ' + json.code
+            tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
+            tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
+          }, (error) => { console.log(error) })
+      }, 1000)
 
     })
 
@@ -111,19 +114,21 @@
 
       const city = cityInput.value
 
-      weather.getWeatherByCity(city)
-        .then((json) => {
-          console.log(json)
-          tempEl.innerHTML = json.temp
-          descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
-          nameEl.innerHTML = json.name
-          coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
-          coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
-          feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
-          codeEl.innerHTML = 'Code:' + ' ' + json.code
-          tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
-          tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
-        }, (error) => { console.log(error) })
+      setInterval(() => {
+        weather.getWeatherByCity(city)
+          .then((json) => {
+            console.log(json)
+            tempEl.innerHTML = json.temp
+            descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
+            nameEl.innerHTML = json.name
+            coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
+            coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
+            feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
+            codeEl.innerHTML = 'Code:' + ' ' + json.code
+            tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
+            tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
+          }, (error) => { console.log(error) })
+      }, 1000)
 
     })
 
@@ -131,37 +136,41 @@
       e.preventDefault()
       const lat = latit.value
       const lon = long.value
-      weather.getWeatherByGeo(lat, lon)
-        .then((json) => {
-          console.log(json)
-          tempEl.innerHTML = json.temp
-          descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
-          nameEl.innerHTML = json.name
-          coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
-          coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
-          feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
-          codeEl.innerHTML = 'Code:' + ' ' + json.code
-          tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
-          tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
-        }, (error) => { console.log(error) })
+      setInterval(() => {
+        weather.getWeatherByGeo(lat, lon)
+          .then((json) => {
+            console.log(json)
+            tempEl.innerHTML = json.temp
+            descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
+            nameEl.innerHTML = json.name
+            coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
+            coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
+            feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
+            codeEl.innerHTML = 'Code:' + ' ' + json.code
+            tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
+            tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
+          }, (error) => { console.log(error) })
+      }, 1000)
     })
 
     form4El.addEventListener('submit', (e) => {
       e.preventDefault()
       const cityID = CityID.value
-      weather.getWeatherByCityId(cityID)
-        .then((json) => {
-          console.log(json)
-          tempEl.innerHTML = json.temp
-          descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
-          nameEl.innerHTML = json.name
-          coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
-          coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
-          feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
-          codeEl.innerHTML = 'Code:' + ' ' + json.code
-          tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
-          tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
-        }, (error) => { console.log(error) })
+      setInterval(() => {
+        weather.getWeatherByCityId(cityID)
+          .then((json) => {
+            console.log(json)
+            tempEl.innerHTML = json.temp
+            descEl.innerHTML = json.description.charAt(0).toUpperCase() + json.description.slice(1);
+            nameEl.innerHTML = json.name
+            coordLat.innerHTML = 'Latitude:' + ' ' + json.coordLat
+            coordLon.innerHTML = 'Longitude:' + ' ' + json.coordLon
+            feelEl.innerHTML = 'Feels like:' + ' ' + json.feels_like
+            codeEl.innerHTML = 'Code:' + ' ' + json.code
+            tempMaxEl.innerHTML = 'Max temp:' + ' ' + json.temp_max
+            tempMinEl.innerHTML = 'Min temp:' + ' ' + json.temp_min
+          }, (error) => { console.log(error) })
+      }, 1000)
     })
 
   </script>
